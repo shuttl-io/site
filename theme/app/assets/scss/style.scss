@@ -23,6 +23,22 @@
     min-height: 57vh;
 }
 
+$breakpoints: xs, sm, md, lg, xl;
+
+.max-width-100 {
+    max-width: 100vh;
+}
+@each $breakpoint in $breakpoints {
+    @include media-breakpoint-up($breakpoint) {
+        .max-width-#{$breakpoint}-100 {
+            max-width: 100vh;
+        }
+    }
+}
+@include media-breakpoint-up(md) { 
+    
+}
+
 .text-eyebrow-2 {
     font-size: 1.25rem !important;
 }

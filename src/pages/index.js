@@ -10,7 +10,7 @@ const IndexPage = (props) => (
   <Layout>
     <SEO title="Home" />
     <section className="pb-2">
-      <Container className="mt-10">
+      <Container className="mt-md-10">
         <Col md={10} className="text-center py-10 mr-auto ml-auto">
           <span dangerouslySetInnerHTML={{ __html: props.data.wordpressAcfHomePage.acf.top.call_to_action }} />
           <Link to={props.data.wordpressAcfHomePage.acf.top.link} className="btn btn-purple btn-rounded px-5 my-5">Get Started</Link>

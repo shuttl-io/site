@@ -31,10 +31,10 @@ header {
 
 
 	@include media-breakpoint-down(md) {
-		@include border-radius;
-		margin: ($grid-gutter-width / 2);
+		// @include border-radius;
+		// margin: ($grid-gutter-width / 2);
 		// padding: 0;
-		width: calc(100% - 30px);
+		// width: calc(100% - 30px);
 		background: $white;
 	}
 }

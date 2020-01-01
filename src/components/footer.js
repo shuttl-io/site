@@ -40,14 +40,14 @@ export default (props) => {
             <img className="img-fluid" src="/imgs/logo.png" alt="Shuttl Logo" />
           </Col>
           {data.wordpressAcfFooter.acf.link_columns.map((col, ndx) => (
-            <Col md={colNumber} xs={6} key={ndx}>
+            <Col md={colNumber} xs={6} key={ndx} className="text-center text-md-left">
               <h6>{col.title}</h6>
               {col.link.map((link, ndx) => <FooterLink {...link} key={ndx} />)}
             </Col>
           ))}
 
           {data.wordpressAcfFooter.acf.text_columns.map((col, ndx) => (
-            <Col md={colNumber} xs={6} key={ndx}>
+            <Col md={colNumber} xs={12} key={ndx} className="text-center text-md-left">
               <h6>{col.title}</h6>
               <div dangerouslySetInnerHTML={{ __html: col.content }} />
             </Col>
