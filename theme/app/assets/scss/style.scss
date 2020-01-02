@@ -26,18 +26,21 @@
 $breakpoints: xs, sm, md, lg, xl;
 
 .max-width-100 {
-    max-width: 100vh;
+    max-width: 100vw;
 }
 @each $breakpoint in $breakpoints {
     @include media-breakpoint-up($breakpoint) {
         .max-width-#{$breakpoint}-100 {
-            max-width: 100vh;
+            max-width: 100vw;
         }
     }
 }
-@include media-breakpoint-up(md) { 
-    
-}
+// @each $breakpoint in $breakpoints {
+// @include media-breakpoint-up($breakpoint) { 
+//     .width-#{$breakpoint}-100 {
+//         width: 100vw;
+//     }
+// }
 
 .text-eyebrow-2 {
     font-size: 1.25rem !important;

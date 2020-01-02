@@ -8,10 +8,10 @@ export default (props) => {
     <section className="p-0">
       <div className="swiper-container text-white swiper-container-fade swiper-container-horizontal skrollable skrollable-between" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);" style={{ transform: "translateY(0px)" }}>
         <div className="swiper-wrapper">
-          <div className="swiper-slide vh-100 swiper-slide-active max-width-100" style={{
+          <div className="swiper-slide vh-100 swiper-slide-active max-width-100 width-md-100" style={{
             opacity: 1, transform: "translate3d(0px, 0px, 0px)",
           }}>
-            <div className="image image-overlay image-zoom max-width-100 " style={{ backgroundImage: `url(${img})`, transition: "background-image 0.2s ease-in-out" }}></div>
+            <div className="image image-overlay image-zoom max-width-100 " style={{ backgroundImage: `url(${img})` }}></div>
             <div className="caption">
               <div className="container">
                 <div className="row align-items-center vh-100">
