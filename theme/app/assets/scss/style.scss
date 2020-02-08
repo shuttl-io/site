@@ -35,12 +35,6 @@ $breakpoints: xs, sm, md, lg, xl;
         }
     }
 }
-// @each $breakpoint in $breakpoints {
-// @include media-breakpoint-up($breakpoint) { 
-//     .width-#{$breakpoint}-100 {
-//         width: 100vw;
-//     }
-// }
 
 .text-eyebrow-2 {
     font-size: 1.25rem !important;

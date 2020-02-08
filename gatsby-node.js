@@ -54,15 +54,6 @@ exports.createPages = async ({ graphql, actions }) => {
         name
       }
     }
-    posts: allWordpressPost {
-      nodes {
-        slug
-        wordpress_id
-        categories {
-          slug
-        }
-      }
-    }
     tags: allWordpressTag {
       nodes {
         name
@@ -99,6 +90,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+
 
   result.data.tags.nodes.forEach(tag => {
     if (tag.count === 0) {
@@ -137,6 +129,8 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   });
 
+  result.data.posts = {};
+  result.data.posts.nodes = [];
   paginateResults({
     numberPerPage,
     edges: result.data.posts.nodes,

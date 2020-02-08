@@ -19,9 +19,9 @@ const Header = ({ siteTitle }) => (
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav align-items-center ml-auto">
             <Products />
-            <Services />
+            {/* <Services /> */}
             <Projects />
-            <Blog />
+            {/* <Blog /> */}
 
             <li className="nav-item">
               <Link className="nav-link" to="/contact" >

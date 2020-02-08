@@ -56,56 +56,56 @@ export default (props) => {
   )
 }
 
-export const query = graphql`
-query($limit: Int!, $skip: Int!, $slug: String) {
-  allWordpressPost(
-    sort: {order: DESC, fields: date}, 
-    limit: $limit, 
-    skip: $skip,
-    filter: {categories: {elemMatch: {slug: {eq: $slug}}}}
-  ) {
-      nodes {
-        slug
-        excerpt
-        title
-        categories {
-          slug
-        }
-        featured_media {
-          source_url
-          localFile {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-      }
-    }
-  all: allWordpressPost(
-    sort: {order: DESC, fields: date}, 
-    limit: $limit, 
-    skip: $skip,
-  ) {
-      nodes {
-        slug
-        excerpt
-        title
-        categories {
-          slug
-        }
-        featured_media {
-          source_url
-          localFile {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-      }
-    }
-}
-`
+// export const query = graphql`
+// query($limit: Int!, $skip: Int!, $slug: String) {
+//   allWordpressPost(
+//     sort: {order: DESC, fields: date}, 
+//     limit: $limit, 
+//     skip: $skip,
+//     filter: {categories: {elemMatch: {slug: {eq: $slug}}}}
+//   ) {
+//       nodes {
+//         slug
+//         excerpt
+//         title
+//         categories {
+//           slug
+//         }
+//         featured_media {
+//           source_url
+//           localFile {
+//             childImageSharp {
+//               fluid {
+//                 ...GatsbyImageSharpFluid
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   all: allWordpressPost(
+//     sort: {order: DESC, fields: date}, 
+//     limit: $limit, 
+//     skip: $skip,
+//   ) {
+//       nodes {
+//         slug
+//         excerpt
+//         title
+//         categories {
+//           slug
+//         }
+//         featured_media {
+//           source_url
+//           localFile {
+//             childImageSharp {
+//               fluid {
+//                 ...GatsbyImageSharpFluid
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+// }
+// `

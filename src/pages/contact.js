@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Img from "gatsby-image";
 
@@ -7,6 +7,8 @@ import SEO from "../components/seo";
 import { graphql, useStaticQuery } from "gatsby";
 
 export default (props) => {
+  const [email, setEmail] = useState(props.location.state.email);
+  console.log();
   const contact = useStaticQuery(graphql`query ContactPage {
     wordpressAcfContact( wordpress_id: {eq: 122}) {
       acf {
@@ -45,7 +47,7 @@ export default (props) => {
           </Row>
         </Container>
       </section>
-      <section className="pt-5 pb-0">
+      <section className="pt-5 pb-0" id="form">
         <Container className="py-10">
           <Row className="justify-content-between">
             <Col md={5}>
@@ -65,10 +67,10 @@ export default (props) => {
               )}
             </Col>
             <Col md={5}>
-              <form name="contact" netlify>
+              <form name="contact" netlify >
                 <div className="form-group">
                   <label for="inputEmail1" className="sr-only">Best Contact Email</label>
-                  <input type="email" className="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Best Contact Email" required />
+                  <input type="email" className="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Best Contact Email" required value={email} onChange={(e) => setEmail(e.target.value)} />
                   <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else. We only use it for getting back to you</small>
                 </div>
 

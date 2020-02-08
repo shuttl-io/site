@@ -60,35 +60,35 @@ export default (props) => {
   );
 }
 
-export const query = graphql`
-query($id: Int!) {
-  wordpressPost(wordpress_id: {eq: $id}) {
-    wordpress_id
-    title
-    content
-    excerpt
-    date(formatString: "MMMM DD, YYYY")
-    author {
-      name
-    }
-    categories {
-      name
-      slug
-    }
-    tags {
-      name
-      slug
-    }
-    featured_media {
-      source_url
-      localFile {
-        childImageSharp {
-        	fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  }
-}
-`;
+// export const query = graphql`
+// query($id: Int!) {
+//   wordpressPost(wordpress_id: {eq: $id}) {
+//     wordpress_id
+//     title
+//     content
+//     excerpt
+//     date(formatString: "MMMM DD, YYYY")
+//     author {
+//       name
+//     }
+//     categories {
+//       name
+//       slug
+//     }
+//     tags {
+//       name
+//       slug
+//     }
+//     featured_media {
+//       source_url
+//       localFile {
+//         childImageSharp {
+//         	fluid {
+//             ...GatsbyImageSharpFluid
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// `;
