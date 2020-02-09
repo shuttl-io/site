@@ -7,7 +7,8 @@ import SEO from "../components/seo";
 import { graphql, useStaticQuery } from "gatsby";
 
 export default (props) => {
-  const [email, setEmail] = useState(props.location.state.email);
+  const propState = props.location.state || {};
+  const [email, setEmail] = useState(propState.email);
   console.log();
   const contact = useStaticQuery(graphql`query ContactPage {
     wordpressAcfContact( wordpress_id: {eq: 122}) {
