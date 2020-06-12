@@ -10,7 +10,7 @@ export default (props) => {
   const wpData = props.data.allWordpressWpProject;
   return (
     <Layout>
-      <SEO title="All Projects" />
+      <SEO title="All Projects" pathname={props.path} />
       <section className="hero hero-with-header bg-light">
         <Container>
           <Row className="justify-content-center">

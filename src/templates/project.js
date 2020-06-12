@@ -13,7 +13,7 @@ export default (props) => {
   return (
     <>
       <Layout>
-        <SEO title={`Project: ${props.data.wordpressWpProject.title}`} description={props.data.wordpressWpProject.acf.excerpt} />
+        <SEO title={`Project: ${props.data.wordpressWpProject.title}`} description={props.data.wordpressWpProject.acf.excerpt} pathname={props.path} />
         <section className="bg-light pt-5 pb-0">
           <Container className="py-10">
             <Row className="bg-white">

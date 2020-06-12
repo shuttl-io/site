@@ -16,7 +16,7 @@ export default (props) => {
   }
   return (
     <Layout>
-      <SEO title={props.pageContext.name} description={props.pageContext.description} />
+      <SEO title={props.pageContext.name} description={props.pageContext.description} pathname={props.path} />
       <section className="bg-light pt-5 pb-0">
         <Container className="py-10">
           <Row className="justify-content-center">

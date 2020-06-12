@@ -46,7 +46,7 @@ export default (props) => {
   console.log(content);
   return (
     <Layout>
-      <SEO title={`All content tagged with ${props.pageContext.tag}`} />
+      <SEO title={`${props.pageContext.tag}`} pathname={props.path} />
       <section className="bg-light pt-5 pb-0">
         <Container className="py-10">
           <Row className="justify-content-center">

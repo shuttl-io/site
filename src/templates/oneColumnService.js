@@ -9,7 +9,7 @@ import BlogHeader from "../components/BlogHeader";
 export default (props) => {
   return (
     <Layout>
-      <SEO title={props.data.wordpressWpServices.title} description={props.data.wordpressWpServices.excerpt} />
+      <SEO title={props.data.wordpressWpServices.title} description={props.data.wordpressWpServices.excerpt} pathname={props.path} />
       <BlogHeader
         fluid={{
           ...props.data.wordpressWpServices.featured_media.localFile.childImageSharp.fluid,

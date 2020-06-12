@@ -10,7 +10,7 @@ const IndexPage = (props) => {
   const [email, setEmail] = useState(null);
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Home" description={props.data.wordpressAcfHomePage.excerpt} pathname="/" />
       <section className="pb-2">
         <Container className="mt-md-10">
           <Col md={10} className="text-center py-10 mr-auto ml-auto">
@@ -188,7 +188,8 @@ query MyQuery {
     }
   }
 
-   wordpressAcfHomePage(wordpress_id: {eq: 10}) {
+  wordpressAcfHomePage: wordpressWpHomePage(wordpress_id: {eq: 10}) {
+    excerpt
     acf {
       top {
         call_to_action
@@ -199,7 +200,7 @@ query MyQuery {
             localFile {
               childImageSharp {
                 fluid {
-                  ...GatsbyImageSharpFluid
+                  src
                 }
               }
             }
@@ -219,7 +220,7 @@ query MyQuery {
             localFile {
               childImageSharp {
                 fixed(height: 80, width: 80) {
-                  ...GatsbyImageSharpFixed
+                  src
                 }
               }
             }
@@ -245,7 +246,7 @@ query MyQuery {
             localFile {
               childImageSharp {
                 fixed(height: 64, width: 64) {
-                  ...GatsbyImageSharpFixed
+                  src
                 }
               }
             }
@@ -255,6 +256,7 @@ query MyQuery {
         }
       }
     }
+  
   }
 }
 `;

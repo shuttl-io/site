@@ -64,6 +64,14 @@ module.exports = module.exports = {
     `gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,
     {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.shuttl.io/',
+        sitemap: 'https://www.shuttl.io/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `gatsby-starter-default`,
@@ -72,7 +80,7 @@ module.exports = module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

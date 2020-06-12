@@ -11,7 +11,7 @@ export default (props) => {
   const tags = props.data.wordpressPost.tags || [];
   return (
     <Layout>
-      <SEO title={props.data.wordpressPost.title} description={props.data.wordpressPost.excerpt} />
+      <SEO title={props.data.wordpressPost.title} description={props.data.wordpressPost.excerpt} pathname={props.path} type="Post" />
       <BlogHeader
         title={props.data.wordpressPost.title}
         category={props.data.wordpressPost.categories[0]}

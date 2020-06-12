@@ -9,9 +9,14 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import url from "url"
 
-function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
+function SEO({ description, lang, meta, title, picture, pathname, type }) {
+  const siteUrl = "https://www.shuttl.io"
+  const parsedUrl = url.parse(siteUrl);
+  const myUrl = `${siteUrl}${pathname}`;
+
+  const { site, icon } = useStaticQuery(
     graphql`
       query {
         site {
@@ -21,6 +26,14 @@ function SEO({ description, lang, meta, title }) {
             author
           }
         }
+
+        icon: file(relativePath: {eq: "favicon.png"}) {
+          childImageSharp {
+            original {
+              src
+            }
+          }
+      }
       }
     `
   )
@@ -67,8 +80,37 @@ function SEO({ description, lang, meta, title }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `og:image`,
+          content: picture || `https://www.shuttl.io/${icon.childImageSharp.original.src}`
+        },
+        {
+          name: `twitter:image`,
+          content: picture || `https://www.shuttl.io/${icon.childImageSharp.original.src}`
+        },
+        {
+          name: `twitter:site`,
+          content: `https://www.shuttl.io/`,
+        }
       ].concat(meta)}
-    />
+    >
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org/",
+          "@type": type || "Website",
+          "name": title,
+          "description": metaDescription,
+        })}
+      </script>
+
+      {pathname && (<link
+        rel="canonical"
+        key={myUrl}
+        href={myUrl}
+        data-baseprotocol={parsedUrl.protocol}
+        data-basehost={parsedUrl.host}
+      />)}
+    </Helmet>
   )
 }
 

@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby";
 
 export default (props) => {
   const data = useStaticQuery(graphql`{
-    allWordpressWpProduct(filter: {acf: {is_in_header: {eq: true}}}) {
+    allWordpressWpProduct(filter: {acf: {is_in_header: {eq: true}, is_dummy: {eq: false}}}) {
       edges {
         node {
           acf {

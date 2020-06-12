@@ -36,7 +36,7 @@ export default (props) => {
   }`).wordpressAcfContact.acf;
   return (
     <Layout>
-      <SEO title="Contact Us" description="See what we can do for you!" />
+      <SEO title="Contact Us" description="See what we can do for you!" pathname="/contact" />
       <section className="bg-light pt-5 pb-0">
         <Container className="py-10">
           <Row className="justify-content-center">
