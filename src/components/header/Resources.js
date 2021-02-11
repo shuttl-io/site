@@ -48,8 +48,8 @@ export default (props) => {
   }
   return (
     <li className="nav-item dropdown">
-      <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Blog
+      <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Resources
       </a>
       <div className="dropdown-menu" aria-labelledby="navbarDropdown">
         {headerCategories.map((catSlug, ndx) => (

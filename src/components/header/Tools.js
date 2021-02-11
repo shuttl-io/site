@@ -18,12 +18,12 @@ export default (props) => {
   }
   return (
     <li className="nav-item dropdown">
-      <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Services
+      <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Tools
       </a>
       <div className="dropdown-menu" aria-labelledby="navbarDropdown">
         {data.allWordpressWpServices.edges.map(({ node }, ndx) => (
-          <Link to={`/services/${node.slug}`} className="dropdown-item" key={ndx}>
+          <Link to={`/tools/${node.slug}`} className="dropdown-item" key={ndx}>
             <span>{node.title}</span>
             <span dangerouslySetInnerHTML={{ __html: node.excerpt }} />
           </Link>

@@ -33,7 +33,7 @@ export default (props) => {
   const info = data.wordpressAcfFooter.acf;
   const colNumber = Math.floor(12 / (1 + info.link_columns.length + info.text_columns.length))
   return (
-    <footer className="seperator-top">
+    <footer>
       <Container>
         <Row className="justify-content-center">
           <Col md={colNumber} className="align-self-center">
@@ -53,14 +53,18 @@ export default (props) => {
             </Col>
           ))}
         </Row>
-        <Row>
-          <Col className="text-center">
-            © {new Date().getFullYear()} Shuttl, LLC, Built with
-          {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </Col>
-        </Row>
       </Container>
+      <div className="separator-top">
+        <Container>
+          <Row className="py-5">
+            <Col className="text-center">
+              © {new Date().getFullYear()} Shuttl, LLC, Built with
+          {` `}
+              <a href="https://www.gatsbyjs.org">Gatsby</a>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </footer>
   );
 }

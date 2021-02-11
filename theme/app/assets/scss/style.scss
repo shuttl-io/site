@@ -57,3 +57,26 @@ $opacityLevels: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100;
 // Components
 @import "layout/_layout";
 @import "components/_components";
+
+body {
+    background-color: $dark;
+    color: $white;
+}
+
+.text-gradient-primary, .text-gradient-primary h1{
+    background: radial-gradient(#ffffff, $purple, $purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-yellow, .text-gradient-yellow h1{
+    background: radial-gradient(#ffffff, $yellow, $yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyan, .text-gradient-cyan h1{
+    background: radial-gradient(#ffffff, $cyan, $cyan);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

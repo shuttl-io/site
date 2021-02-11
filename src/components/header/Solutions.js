@@ -15,13 +15,13 @@ export default (props) => {
       }
     }
   }`);
-  if (data.allWordpressWpProduct.edges.length === 0) {
-    return null;
-  }
+  // if (data.allWordpressWpProduct.edges.length === 0) {
+  //   return null;
+  // }
   return (
     <li className="nav-item dropdown">
-      <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Products
+      <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Solutions
               </a>
       <div className="dropdown-menu" aria-labelledby="navbarDropdown">
         {data.allWordpressWpProduct.edges.map(({ node }, ndx) => (
