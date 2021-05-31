@@ -75,61 +75,61 @@ export default (props) => {
   );
 }
 
-export const query = graphql`
-query($limit: Int!, $skip: Int!, $slug: String) {
-  #posts: allWordpressPost(
-  #  sort: {order: DESC, fields: date}, 
-  #  limit: $limit, 
-  #  skip: $skip,
-  #  filter: {tags: {elemMatch: {slug: {eq: $slug}}}}
-  #) {
-  #    nodes {
-  #      __typename
-  #      slug
-  #      excerpt
-  #      title
-  #      categories {
-  #        slug
-  #        name
-  #      }
-  #      featured_media {
-  #        source_url
-  #        localFile {
-  #          childImageSharp {
-  #            fluid {
-  #              ...GatsbyImageSharpFluid
-  #            }
-  #          }
-  #        }
-  #      }
-  #    }
-  #  }
+// export const query = graphql`
+// query($limit: Int!, $skip: Int!, $slug: String) {
+//   #posts: allWordpressPost(
+//   #  sort: {order: DESC, fields: date}, 
+//   #  limit: $limit, 
+//   #  skip: $skip,
+//   #  filter: {tags: {elemMatch: {slug: {eq: $slug}}}}
+//   #) {
+//   #    nodes {
+//   #      __typename
+//   #      slug
+//   #      excerpt
+//   #      title
+//   #      categories {
+//   #        slug
+//   #        name
+//   #      }
+//   #      featured_media {
+//   #        source_url
+//   #        localFile {
+//   #          childImageSharp {
+//   #            fluid {
+//   #              ...GatsbyImageSharpFluid
+//   #            }
+//   #          }
+//   #        }
+//   #      }
+//   #    }
+//   #  }
 
-  projects: allWordpressWpProject(
-    sort: {order: DESC, fields: date}, 
-    limit: $limit, 
-    skip: $skip,
-    filter: {tags: {elemMatch: {slug: {eq: $slug}}}}
-  ) {
-      nodes {
-        slug
-        __typename
-        title
-        acf {
-          make_dark_text
-          small_excerpt
-          main_image {
-            source_url
-            localFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-}
-`
+//   # projects: allWordpressWpProject(
+//   #   sort: {order: DESC, fields: date}, 
+//   #   limit: $limit, 
+//   #   skip: $skip,
+//   #   filter: {tags: {elemMatch: {slug: {eq: $slug}}}}
+//   # ) {
+//   #     nodes {
+//   #       slug
+//   #       __typename
+//   #       title
+//   #       acf {
+//   #         make_dark_text
+//   #         small_excerpt
+//   #         main_image {
+//   #           source_url
+//   #           localFile {
+//   #             childImageSharp {
+//   #               fluid {
+//   #                 ...GatsbyImageSharpFluid
+//   #               }
+//   #             }
+//   #           }
+//   #         }
+//   #       }
+//   #     }
+//   #   }
+// }
+// `

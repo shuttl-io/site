@@ -5,17 +5,15 @@ import { Dropdown } from "react-bootstrap";
 export default (props) => {
   const data = useStaticQuery(graphql`
     query {
-    allWordpressWpProject(filter: {acf: {is_in_header: {eq: true}}}) {
-      edges {
-        node {
-          slug
-          title
-          excerpt
-        }
-      }
+     allWpProject(filter: {projectFields: {isInHeader: {eq: true}}}) {
+    nodes {
+      slug
+      title
+      excerpt
     }
+  }
   }`);
-  if (data.allWordpressWpProject.edges.length === 0) {
+  if (data.allWpProject.edges.length === 0) {
     return null;
   }
   return (
@@ -24,7 +22,7 @@ export default (props) => {
         Projects
       </a>
       <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-        {data.allWordpressWpProject.edges.map(({ node }, ndx) => (
+        {data.allWpProject.nodes.map((node, ndx) => (
           <Link to={`/projects/${node.slug}`} className="dropdown-item" key={ndx}>
             <span>{node.title}</span>
             <span dangerouslySetInnerHTML={{ __html: node.excerpt }} />

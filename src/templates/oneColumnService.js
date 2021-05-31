@@ -73,38 +73,38 @@ export default (props) => {
   )
 }
 
-export const query = graphql`
-query($id: Int!) {
-  wordpressWpServices(wordpress_id: {eq: $id}) {
-    title
-  	excerpt
-    content
-    featured_media {
-      source_url
-      localFile {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-    acf {
-      content {
-        one_group {
-          content
-          icon {
-            localFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`
+// export const query = graphql`
+// query($id: Int!) {
+//   wordpressWpServices(wordpress_id: {eq: $id}) {
+//     title
+//   	excerpt
+//     content
+//     featured_media {
+//       source_url
+//       localFile {
+//         childImageSharp {
+//           fluid {
+//             ...GatsbyImageSharpFluid
+//           }
+//         }
+//       }
+//     }
+//     acf {
+//       content {
+//         one_group {
+//           content
+//           icon {
+//             localFile {
+//               childImageSharp {
+//                 fluid {
+//                   ...GatsbyImageSharpFluid
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// `

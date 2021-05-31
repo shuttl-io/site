@@ -80,3 +80,11 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.bg-custom-grey {
+    background-color: $customGrey;
+}
+
+.container-full-width {
+    width: 100vw !important;
+}

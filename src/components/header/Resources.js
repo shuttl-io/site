@@ -24,43 +24,44 @@ const CategoryLink = (props) => {
 }
 
 export default (props) => {
-  const data = useStaticQuery(graphql`
-  query {
-    categories: allWordpressCategory {
-      nodes {
-        slug
-        count
-        description
-        name
-      }
-    }
-  }`);
-  const categories = data.categories.nodes.reduce((acc, category) => {
-    return {
-      ...acc,
-      __total: acc.__total + 1,
-      [category.slug]: category,
-    }
-  }, { __total: 0 });
+  // const data = useStaticQuery(graphql`
+  // query {
+  //   categories: allWordpressCategory {
+  //     nodes {
+  //       slug
+  //       count
+  //       description
+  //       name
+  //     }
+  //   }
+  // }`);
+  // const categories = data.categories.nodes.reduce((acc, category) => {
+  //   return {
+  //     ...acc,
+  //     __total: acc.__total + 1,
+  //     [category.slug]: category,
+  //   }
+  // }, { __total: 0 });
 
-  if (categories.__total === 0) {
-    return null;
-  }
-  return (
-    <li className="nav-item dropdown">
-      <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Resources
-      </a>
-      <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-        {headerCategories.map((catSlug, ndx) => (
-          <CategoryLink key={ndx} {...categories[catSlug]} />
-        ))}
-        <Dropdown.Divider />
-        <Link to={`/blog/`} className="dropdown-item">
-          <span>See latest Posts</span>
-          <p>Look over our latest posts</p>
-        </Link>
-      </div>
-    </li>
-  )
+  // if (categories.__total === 0) {
+  //   return null;
+  // }
+  return null;
+  // return (
+  //   <li className="nav-item dropdown">
+  //     <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  //       Resources
+  //     </a>
+  //     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+  //       {headerCategories.map((catSlug, ndx) => (
+  //         <CategoryLink key={ndx} {...categories[catSlug]} />
+  //       ))}
+  //       <Dropdown.Divider />
+  //       <Link to={`/blog/`} className="dropdown-item">
+  //         <span>See latest Posts</span>
+  //         <p>Look over our latest posts</p>
+  //       </Link>
+  //     </div>
+  //   </li>
+  // )
 }

@@ -48,29 +48,29 @@ export default (props) => {
   )
 }
 
-export const query = graphql`
-query($limit: Int!, $skip: Int!) {
-  allWordpressWpProject(sort: {order: DESC, fields: date}, limit: $limit, skip: $skip) {
-      edges {
-        node {
-          slug
-          title
-          acf {
-            make_dark_text
-            small_excerpt
-            main_image {
-              source_url
-              localFile {
-                childImageSharp {
-                  fluid {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-}
-`
+// export const query = graphql`
+// query($limit: Int!, $skip: Int!) {
+//   allWordpressWpProject(sort: {order: DESC, fields: date}, limit: $limit, skip: $skip) {
+//       edges {
+//         node {
+//           slug
+//           title
+//           acf {
+//             make_dark_text
+//             small_excerpt
+//             main_image {
+//               source_url
+//               localFile {
+//                 childImageSharp {
+//                   fluid {
+//                     ...GatsbyImageSharpFluid
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+// }
+// `
