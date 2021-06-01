@@ -9,7 +9,7 @@ import BlogHeader from "../components/BlogHeader";
 export default (props) => {
   return (
     <Layout>
-      <SEO title={props.data.wordpressWpServices.title} description={props.data.wordpressWpServices.excerpt} pathname={props.path} />
+      <SEO title={props.data.wordpressWpServices.title} description={props.data.wordpressWpServices.excerpt} pathname={props.path} type="Service" />
       <BlogHeader
         fluid={{
           ...props.data.wordpressWpServices.featured_media.localFile.childImageSharp.fluid,
@@ -73,38 +73,38 @@ export default (props) => {
   )
 }
 
-export const query = graphql`
-query($id: Int!) {
-  wordpressWpServices(wordpress_id: {eq: $id}) {
-    title
-  	excerpt
-    content
-    featured_media {
-      source_url
-      localFile {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-    acf {
-      content {
-        one_group {
-          content
-          icon {
-            localFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`
+// export const query = graphql`
+// query($id: Int!) {
+//   wordpressWpServices(wordpress_id: {eq: $id}) {
+//     title
+//   	excerpt
+//     content
+//     featured_media {
+//       source_url
+//       localFile {
+//         childImageSharp {
+//           fluid {
+//             ...GatsbyImageSharpFluid
+//           }
+//         }
+//       }
+//     }
+//     acf {
+//       content {
+//         one_group {
+//           content
+//           icon {
+//             localFile {
+//               childImageSharp {
+//                 fluid {
+//                   ...GatsbyImageSharpFluid
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// `

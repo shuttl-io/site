@@ -43,12 +43,9 @@ module.exports = module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-wordpress`,
+      resolve: `gatsby-source-wordpress-experimental`,
       options: {
-        baseUrl: `content-shuttl.herokuapp.com`,
-        protocol: `https`,
-        hostingWPCOM: false,
-        useACF: true
+        url: `https://content-shuttl.herokuapp.com/graphql`,
 
         // name: `gatsby-starter-default`,
         // short_name: `starter`,

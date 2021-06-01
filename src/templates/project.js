@@ -3,56 +3,33 @@ import { graphql, Link } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import ImageModal from "../components/imageModal";
+import { Container, Row, Col } from "react-bootstrap";
 import Img from "gatsby-image";
+import Posts from "../components/Posts";
+import Tools from "../components/tools";
 
 export default (props) => {
-  const [img, setImageToShow] = useState(null);
-  const tags = props.data.wordpressWpProject.tags || [];
   return (
     <>
       <Layout>
-        <SEO title={`Project: ${props.data.wordpressWpProject.title}`} description={props.data.wordpressWpProject.acf.excerpt} pathname={props.path} />
-        <section className="bg-light pt-5 pb-0">
+        <SEO title={`Project: ${props.data.wpProject.title}`} description={props.data.wpProject.excerpt} pathname={props.path} type="Project" />
+        <section className="pt-5 pb-0">
           <Container className="py-10">
-            <Row className="bg-white">
+            <Row className="">
               <Col className="p-4">
                 <Row className="align-items-center">
                   <Col md={8}>
                     <Img
-                      fluid={props.data.wordpressWpProject.acf.main_image.localFile.childImageSharp.fluid}
-                      alt={props.data.wordpressWpProject.acf.main_image.alt_text}
-                      onClick={() => setImageToShow({
-                        fluid: props.data.wordpressWpProject.acf.main_image.localFile.childImageSharp.fluid,
-                        alt_text: props.data.wordpressWpProject.acf.main_image.alt_text,
-                      })}
+                      fluid={props.data.wpProject.projectFields.mainImage.localFile.childImageSharp.fluid}
+                      alt={props.data.wpProject.projectFields.mainImage.altText}
                       className="img-fluid"
                     />
                   </Col>
-                  <Col md={4} className="text-right">
-                    <h2>{props.data.wordpressWpProject.title}</h2>
-                    <a className="text-muted h5" href={props.data.wordpressWpProject.acf.website} target="__blank">
-                      <i className="fa fa-globe pr-1"></i>{props.data.wordpressWpProject.acf.website}
-                    </a>
-                    <div className="mt-3" dangerouslySetInnerHTML={{ __html: props.data.wordpressWpProject.acf.excerpt }} />
+                  <Col md={4} className="text-center">
+                    <h1 className="text-gradient-primary m-0 display-1">{props.data.wpProject.title}</h1>
+                    <p className="text-muted">{props.data.wpProject.projectFields.industry}</p>
+                    <div className="mt-3 font-weight-bold" dangerouslySetInnerHTML={{ __html: props.data.wpProject.excerpt }} />
                   </Col>
-                </Row>
-                <Row className="justify-content-around">
-                  {props.data.wordpressWpProject.acf.small_images.map(({ image }, ndx) => {
-                    return (
-                      <Col md={4} key={ndx}>
-                        <Img
-                          fluid={image.localFile.childImageSharp.fluid}
-                          alt={image.alt_text}
-                          onClick={() => setImageToShow({
-                            fluid: image.localFile.childImageSharp.fluid,
-                            alt_text: image.alt_text
-                          })}
-                        />
-                      </Col>
-                    )
-                  })}
                 </Row>
               </Col>
             </Row>
@@ -61,69 +38,56 @@ export default (props) => {
         <section className="bg-white my-5 seperator-bottom py-2">
           <Container>
             <Row>
-              <Col dangerouslySetInnerHTML={{ __html: props.data.wordpressWpProject.content }}></Col>
+              <Col dangerouslySetInnerHTML={{ __html: props.data.wpProject.content }}></Col>
             </Row>
           </Container>
+          <Posts posts={props.data.posts.nodes} title={props.data.wpProject.title} className="py-5" />
         </section>
-        <section className="bg-white my-5">
-          <Container>
-            <Row>
-              {tags.map((tag, ndx) => (
-                <Col md={4} key={ndx} className="text-center">
-                  <Link to={`/tags/${tag.slug}`} className="btn btn-outline-primary">
-                    {tag.name}
-                  </Link>
-                </Col>
-              ))}
-            </Row>
-          </Container>
-        </section>
+        <Tools />
       </Layout>
-      <ImageModal
-        shouldShow={img !== null}
-        onHide={() => setImageToShow(null)}
-        {...img}
-      />
     </>
   )
 }
 
 export const query = graphql`
-query($id: Int!) {
-  wordpressWpProject(wordpress_id: {eq: $id}) {
+query($id: Int!, $tags: [String]) {
+  wpProject(databaseId: {eq: $id}) {
     title
-  	excerpt
     content
-    tags {
-      name
-      slug
-    }
-    acf {
-      excerpt
-      website
-      main_image {
+    projectFields {
+      industry
+      smallExcerpt
+       mainImage {
+         altText
         localFile {
           childImageSharp {
-            fluid {
+            fluid(maxWidth: 825)  {
               ...GatsbyImageSharpFluid
             }
           }
         }
-        alt_text
       }
-      small_images {
-        image {
+    }
+    excerpt
+  }
+
+  posts: allWpPost(filter: {tags: {nodes: {elemMatch: {name: {in: $tags}}}}}) {
+    nodes {
+      title
+      excerpt
+      featuredImage {
+        node {
           localFile {
             childImageSharp {
-              fluid {
+              fluid(maxWidth: 300)  {
                 ...GatsbyImageSharpFluid
               }
             }
           }
-          alt_text
         }
       }
     }
   }
 }
+
 `

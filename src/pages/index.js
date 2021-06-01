@@ -1,152 +1,109 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import { Container, Col, Row } from "react-bootstrap";
+import Img from "gatsby-image/withIEPolyfill"
 
 import Layout from "../components/layout"
-import Img from "gatsby-image";
 import SEO from "../components/seo"
+import Tools from "../components/tools";
 
 const IndexPage = (props) => {
-  const [email, setEmail] = useState(null);
+  console.log(props.data.wpHomePage.homeFields.ourWork);
+  const gradientClasses = ["yellow", "primary", "cyan"];
   return (
     <Layout>
-      <SEO title="Home" description={props.data.wordpressAcfHomePage.excerpt} pathname="/" />
+      <SEO title="Home" description={props.data.wpHomePage.excerpt} pathname="/" />
       <section className="pb-2">
         <Container className="mt-md-10">
           <Col md={10} className="text-center py-10 mr-auto ml-auto">
-            <span dangerouslySetInnerHTML={{ __html: props.data.wordpressAcfHomePage.acf.top.call_to_action }} />
-            <Link to={props.data.wordpressAcfHomePage.acf.top.link} className="btn btn-purple btn-rounded px-5 my-5">Get Started</Link>
+            <span dangerouslySetInnerHTML={{ __html: props.data.wpHomePage.homeFields.top.callToAction }} className="text-gradient-primary" />
+            <Link to={props.data.wpHomePage.homeFields.top.link} className="btn btn-purple btn-rounded px-5 my-5">Get Started</Link>
           </Col>
-          {/* <Row className="aos-init aos-animate py-5" data-aos="fade-up" data-aos-delay="250">
-            <Col>
-              <div className="owl-carousel visible gallery align-bottom owl-loaded owl-drag" data-items="[3,2,2]" data-margin="20" data-loop="true" data-autoplay="true">
-                <div className="owl-stage-outer">
-                  <div className="owl-stage">
-                    {props.data.wordpressAcfHomePage.acf.top.images.map((image, ndx) => (
-                      <div className="owl-item cloned" style={{ width: " 410px", marginRight: "20px" }} key={ndx}>
-                        <figure className={`photo equal ${ndx % 2 === 0 ? "equal-short" : ""}`}>
-                          <Link to={image.link_to} style={{ backgroundImage: `url(${image.image.source_url})` }}>
-                          </Link>
-                        </figure>
-                      </div>
+        </Container>
+      </section>
+      <Container className="text-white" as={"section"}>
+        <Row className="justify-content-between pt-5">
+          <Col md={4} dangerouslySetInnerHTML={{ __html: props.data.wpHomePage.homeFields.salesPitch.title.title }}>
+          </Col>
+          <Col md={7} dangerouslySetInnerHTML={{ __html: props.data.wpHomePage.homeFields.salesPitch.title.content }}>
+          </Col>
+        </Row>
+      </Container>
+      <Container as={"section"}>
+        <h3 className="h4 mb-5">Solutions</h3>
+        <Row className="aos-init aos-animate" data-aos="zoom-in">
+          {props.data.wpHomePage.homeFields.salesPitch.solutions.box.map((box, ndx) => {
+            if (box.hasContent) {
+              const color = gradientClasses[ndx % 3];
+              return (
+                <Col md={6} key={box.title} className="mb-5">
+                  <Col xl={8}>
+                    <h4 className={`h3 text-gradient-${color} font-weight-bolder`}>{box.title}</h4>
+                    <p>{box.blurb.blurb}</p>
+                    {box.blurb.points.map((point, ndx) => (
+                      <p className="border-bottom" key={ndx}>{point.point}</p>
                     ))}
-                  </div>
-                </div>
-              </div>
-            </Col>
-          </Row> */}
-        </Container>
-      </section>
-      <section className="bg-purple">
-        <Container className="text-white">
-          <Row className="justify-content-between pt-5">
-            <Col md={4} dangerouslySetInnerHTML={{ __html: props.data.wordpressAcfHomePage.acf.sales_pitch.title.title }}>
-            </Col>
-            <Col md={7} dangerouslySetInnerHTML={{ __html: props.data.wordpressAcfHomePage.acf.sales_pitch.title.content }}>
-            </Col>
-          </Row>
-        </Container>
-        <Container fluid>
-          <Row className="aos-init aos-animate" data-aos="zoom-in">
-            <Col>
-              <div className="boxed p-5 p-lg-10">
-                <Container>
-                  <Row className="justify-content-between align-items-center">
-                    <Col md={5}>
-                      <h2 className="display-3 mb-1" dangerouslySetInnerHTML={{ __html: props.data.wordpressAcfHomePage.acf.sales_pitch.email_capture.title }}></h2>
-                      <div dangerouslySetInnerHTML={{ __html: props.data.wordpressAcfHomePage.acf.sales_pitch.email_capture.content }}></div>
-                      <div className="input-group mt-2">
-                        <input type="text" className="form-control px-3" placeholder="your@mail.com" aria-label="Get a free copy" onChange={(e) => {
-                          setEmail(e.target.value);
-                        }} />
-                        <div className="input-group-append">
-                          <Link className="btn btn-primary" to="/contact/#form" state={{ email }} type="button">Get Answers</Link>
-                        </div>
-                      </div>
-                    </Col>
-                    <Col md={6}>
-                      <Img fluid={props.data.service1Img.childImageSharp.fluid} alt="" />
-                    </Col>
-                  </Row>
-                </Container>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-        <div className="separator-top mt-10 py-10 text-white">
-          <Container className="text-white">
-            <Row>
-              {props.data.wordpressAcfHomePage.acf.sales_pitch.cards.map((card, ndx) => (
-                <Col md={4} className="text-center" key={ndx}>
-                  <Img fixed={card.card_image.localFile.childImageSharp.fixed} alt="" />
-                  <h3 className="text-uppercase font-weight-normal fs-18 mt-2">{card.card_title}</h3>
-                  <div dangerouslySetInnerHTML={{ __html: card.card_content }}></div>
+                    {box.blurb.link && (
+                      <Link to={`/solutions/${box.blurb.link.slug}`} className="pt-3">Learn More</Link>
+                    )}
+                  </Col>
                 </Col>
-              ))}
-            </Row>
-          </Container>
-        </div>
-      </section>
-      <section className="bg-light separator-top py-5" id="services">
-        <h3 className="text-center" dangerouslySetInnerHTML={{ __html: props.data.wordpressAcfHomePage.acf.services_title }}></h3>
-        <Container>
-          <Row className="boxed separated">
-            {props.data.services.nodes.map((node) => (
-              <div className="text-center col-md-6 col-lg-4 p-5 d-flex flex-column justify-content-around">
-                <Img fluid={node.featured_media.localFile.childImageSharp.fluid} alt="" className="mb-3"></Img>
-                <div>
-                  <h4 className="fs-24 font-weight-normal">{node.title}</h4>
-                  <div dangerouslySetInnerHTML={{ __html: node.excerpt }}></div>
-                </div>
-              </div>
-            ))}
-          </Row>
-        </Container>
-      </section>
+              )
+            }
+            return (
+              <Col md={6} key={box.title}>
+                <Col xl={8}>
+                  <h4 className="h3 font-weight-bolder">{box.title}</h4>
+                </Col>
+              </Col>
+            )
+          })}
+        </Row>
+      </Container>
 
-      <section className="bg-white separator-top py-5">
-        <Container>
-          <Row className="justify-content-between align-items-center">
-            <Col md={6} className="pr-md-4">
-              <h2 className="mb-4" dangerouslySetInnerHTML={{ __html: props.data.wordpressAcfHomePage.acf.quotes.title }}></h2>
-              <div className="accordion-group accordion-group-highlight" id="accordian">
-                {props.data.wordpressAcfHomePage.acf.quotes.expandos.map((expando, ndx) => (
-                  <div className="accordion aos-init aos-animate" key={ndx}>
-                    <div className="accordion-control" id={`heading-${ndx}`} data-control="" data-toggle="collapse" data-target={`#collapse-${ndx}`} aria-expanded="true" aria-controls={`collapse-${ndx}`}>
-                      <h5>{expando.title}</h5>
-                    </div>
-                    <div className="accordion-content collapse" id={`collapse-${ndx}`} data-parent="#accordian" aria-labelledby={`heading-${ndx}`}>
-                      <div className="accordion-content-wrapper" dangerouslySetInnerHTML={{ __html: expando.content }}>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+      <Container as={"section"}>
+        <h3 className="h4 mb-5">{props.data.wpHomePage.homeFields.ourWork.title}</h3>
+        <div className="d-flex justify-content-center">
+          <div className="col-md-9">
+            {props.data.wpHomePage.homeFields.ourWork.work.map((work, ndx) => (
+              <Row key={ndx} className="bg-custom-grey justify-content-around py-5 align-items-center">
+                <Col md={4}>
+                  <p className="text-muted">{work.project.projectFields.industry}</p>
+                  <h5 className="font-weight-bolder my-3">{work.project.title}</h5>
+                  <div dangerouslySetInnerHTML={{ __html: work.project.projectFields.smallExcerpt }} className="mb-3"></div>
+                  <Link to={`/projects/${work.project.slug}`}>Learn more</Link>
+                </Col>
+                <Col md={4}>
+                  <Img fluid={work.project.featuredImage.node.localFile.childImageSharp.fluid} className="bg-white" />
+                </Col>
+              </Row>
+            ))}
+          </div>
+        </div>
+      </Container>
+
+
+      <Container as={"section"}>
+        <Row>
+          {props.data.wpHomePage.homeFields.quotes.map((quote, ndx) => (
+            <Col md={6} key={ndx} className="bg-custom-grey p-5">
+              <p className="h3">
+                <i className="fa fa-quote-left text-primary" aria-hidden="true"></i>
+              </p>
+              <div>
+                <div className="lead" dangerouslySetInnerHTML={{ __html: quote.quote }}></div>
+                <h5 className="text-muted my-3 h6">{quote.attribution.author} @ {quote.attribution.company}</h5>
               </div>
             </Col>
-            <Col>
-              <Img fluid={props.data.service2Img.childImageSharp.fluid} alt="" />
-            </Col>
-          </Row>
-        </Container>
-      </section>
-      <section className="bg-light pt-5" >
-        <Container>
-          {props.data.wordpressAcfHomePage.acf.quotes.quote.map((quote, ndx) => (
-            <Row className={`align-items-center py-5 ${ndx % 2 !== 0 ? "flex-row-reverse" : ""}`} key={ndx}>
-              <Col md={6} className="pr-md-5 d-flex justify-content-center">
-                <Img fixed={quote.icon.localFile.childImageSharp.fixed} alt={quote.icon.alt_text} className="img-fluid" />
-              </Col>
-              <Col md={6}>
-                <blockquote className="blockquote" >
-                  <div dangerouslySetInnerHTML={{ __html: quote.quote }}>
-                  </div>
-                  <footer className="blockquote-footer">{quote.author}</footer>
-                </blockquote>
-              </Col>
-            </Row>
           ))}
-        </Container>
-      </section>
+        </Row>
+      </Container>
+
+      <Tools />
+      <Container as={"section"}>
+        <Row dangerouslySetInnerHTML={{ __html: props.data.wpHomePage.homeFields.preFooter }}>
+        </Row>
+      </Container>
     </Layout >
   )
 };
@@ -154,33 +111,70 @@ const IndexPage = (props) => {
 export default IndexPage
 export const pageQuery = graphql`
 query MyQuery {
-  service1Img: file(relativePath: {eq: "imgs/service-1.png"}) {
-    childImageSharp {
-      fluid(quality: 100) {
-        ...GatsbyImageSharpFluid
+  wpHomePage {
+    id
+    excerpt
+    homeFields {
+      fieldGroupName
+      top {
+        callToAction
+        link
       }
-    }
-  }
-  service2Img: file(relativePath: {eq: "imgs/service-2.png"}) {
-    childImageSharp {
-      fluid(quality: 100) {
-        ...GatsbyImageSharpFluid
+      ourWork {
+        title
+        work {
+          project {
+            ... on WpProject {
+              id
+              slug
+              excerpt
+              title
+              projectFields {
+                industry
+                smallExcerpt
+              }
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                     fluid(maxWidth: 300)  {
+                        ...GatsbyImageSharpFluid
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
-    }
-  }
-  services: allWordpressWpServices {
-    nodes {
-      slug
-      title
-      excerpt
-      acf {
-        is_in_header
+      quotes {
+        quote
+        attribution {
+          author
+          company
+        }
       }
-      featured_media {
-        localFile {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
+      preFooter
+      salesPitch {
+        title {
+          title
+          content
+        }
+        solutions {
+          box {
+            title
+            hasContent
+            blurb {
+              link {
+                ... on WpService {
+                  slug
+                }
+              }
+              points {
+                point
+              }
+              blurb
             }
           }
         }
@@ -188,75 +182,50 @@ query MyQuery {
     }
   }
 
-  wordpressAcfHomePage: wordpressWpHomePage(wordpress_id: {eq: 10}) {
-    excerpt
-    acf {
-      top {
-        call_to_action
-        images {
-          image {
-            alt_text
-            source_url
-            localFile {
-              childImageSharp {
-                fluid {
-                  src
-                }
-              }
-            }
-          }
-          link_to
-        }
-      }
-      services_title
-      quotes {
-        title
-        quote {
-          author
-          quote
-          icon {
-            source_url
-            alt_text
-            localFile {
-              childImageSharp {
-                fixed(height: 80, width: 80) {
-                  src
-                }
-              }
-            }
-          }
-        }
-        expandos {
-          title
-          content
-        }
-      }
-      sales_pitch {
-        title{
-          title
-          content
-        }
-        email_capture {
-          content
-          title
-        }
-        cards {
-          card_image {
-            source_url
-            localFile {
-              childImageSharp {
-                fixed(height: 64, width: 64) {
-                  src
-                }
-              }
-            }
-          }
-          card_title
-          card_content
-        }
-      }
-    }
-  
-  }
+  # wordpressAcfHomePage: wordpressAcfHomePage(wordpress_id: {eq: 10}) {
+  #   acf {
+  #     top {
+  #       call_to_action
+  #       link
+  #     }
+  #     sales_pitch {
+  #       title {
+  #         content
+  #         title
+  #       }
+  #       solutions {
+  #         box {
+  #           blurb {
+  #             blurb
+  #             points {
+  #               point
+  #             }
+  #             link {
+  #               post_title
+  #             }
+  #           }
+  #           has_content
+  #           title
+  #         }
+  #       }
+  #     }
+  #     quotes {
+  #       quote
+  #       attribution {
+  #         author
+  #         company
+  #       }
+  #     }
+  #     pre_footer
+  #     our_work {
+  #       title
+  #       work {
+  #         content
+  #         title
+  #         industry
+  #       }
+  #     }
+  #   }
+  # }
 }
 `;
